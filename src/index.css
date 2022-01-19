@@ -1,3 +1,31 @@
+.white-text {
+    color: white;
+}
+
 #word {
-    letter-spacing: 2px;
+    padding-left: 8px;
+    letter-spacing: 8px;    
+    font-size: 48px;
+}
+
+#letter-input {
+    box-sizing: border-box;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    width: 192px;
+    height: 32px;
+}
+
+html {
+    background-color: #212121;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-
 }
