@@ -5,9 +5,10 @@
         <title>Word Guesser</title>
         <link rel="stylesheet" href="index.css">
     </head>
-    <body>
+    <body id="body">
         <div id="word" class="white-text">_____</div>
-        <input id="letter-input" type="text" placeholder="Guess a letter...">
-        <span class="white-text">Remaining guesses: </span>
+        <input id="letter-input" type="text" placeholder="Guess a letter..." maxlength="1">
+        <span id="remaining" class="white-text"></span>
+        <script src="index.js"></script>
     </body>
 </html>
