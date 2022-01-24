@@ -38,32 +38,34 @@ let wordToGuess = random(words);
 let wrongLetters = [];
 remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
 
-input.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-        if (input.value !== "") {
-            remainingGuesses--;
-            remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
-            if (!wordToGuess.includes(input.value)) {
-                wrongLetters.push(` ${input.value}`);
-            }
-            for (let i = 0; i < wordToGuess.length; i++) {
-                if (wordToGuess[i] === input.value) {
-                    let splittedWord = word.textContent.split("");
-                    splittedWord[i] = input.value;
-                    word.textContent = splittedWord.join("");
-                    if (word.textContent === wordToGuess) {
-                        word.style.color = "green";
-                        input.disabled = true;
-                    }
-                }
-            }
-            if (remainingGuesses === 0 && word.textContent !== wordToGuess) {
-                word.textContent = wordToGuess;
-                word.style.color = "red";
-                input.disabled = true;
-            }
-            input.value = "";
+console.log(wordToGuess);
+
+function playingGame (event) {
+    let key = event.key;
+    if (key >= "a" && key <= "z") {
+        remainingGuesses--;
+        remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
+        if (!wordToGuess.includes(key)) {
+            wrongLetters.push(` ${key}`);
             wrongLettersDiv.textContent = `Wrong letters:${wrongLetters}`;
         }
+        for (let i = 0; i < wordToGuess.length; i++) {
+            if (wordToGuess[i] === key) {
+                let splittedWord = word.textContent.split("");
+                splittedWord[i] = key;
+                word.textContent = splittedWord.join("");
+                if (word.textContent === wordToGuess) {
+                    word.style.color = "green";
+                    window.removeEventListener("keyup", playingGame);
+                }
+            }
+        }
+        if (remainingGuesses === 0 && word.textContent !== wordToGuess) {
+            word.textContent = wordToGuess;
+            word.style.color = "red";
+            window.removeEventListener("keyup", playingGame);
+        }
     }
-});
+}
+
+window.addEventListener("keyup", playingGame);
