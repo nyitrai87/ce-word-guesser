@@ -1,5 +1,4 @@
 const body = document.getElementById("body");
-const input = document.getElementById("letter-input");
 const word = document.getElementById("word");
 const remaining = document.getElementById("remaining");
 const wrongLettersDiv = document.getElementById("wrong-letters");
