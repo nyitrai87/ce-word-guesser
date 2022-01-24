@@ -2,6 +2,7 @@ const body = document.getElementById("body");
 const input = document.getElementById("letter-input");
 const word = document.getElementById("word");
 const remaining = document.getElementById("remaining");
+const wrongLettersDiv = document.getElementById("wrong-letters");
 
 const words = [
     'lover',
@@ -34,6 +35,7 @@ function random(array) {
 
 let remainingGuesses = 6;
 let wordToGuess = random(words);
+let wrongLetters = [];
 remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
 
 input.addEventListener("keyup", function (event) {
@@ -41,23 +43,28 @@ input.addEventListener("keyup", function (event) {
         if (input.value !== "") {
             remainingGuesses--;
             remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
+            if (!wordToGuess.includes(input.value)) {
+                wrongLetters.push(input.value);
+            }
             for (let i = 0; i < wordToGuess.length; i++) {
                 if (wordToGuess[i] === input.value) {
                     let splittedWord = word.textContent.split("");
                     splittedWord[i] = input.value;
                     word.textContent = splittedWord.join("");
-                    if(word.textContent === wordToGuess) {
+                    if (word.textContent === wordToGuess) {
                         word.style.color = "green";
                         input.disabled = true;
                     }
-                } 
+                }
             }
-            if(remainingGuesses === 0 && word.textContent !== wordToGuess) {
+            if (remainingGuesses === 0 && word.textContent !== wordToGuess) {
                 word.textContent = wordToGuess;
                 word.style.color = "red";
                 input.disabled = true;
             }
             input.value = "";
+            wrongLettersDiv.textContent = `Wrong letters: ${wrongLetters}`;
+            wrongLettersDiv.style.color = "white";
         }
     }
 });
