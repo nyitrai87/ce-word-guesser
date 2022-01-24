@@ -37,8 +37,6 @@ let wordToGuess = random(words);
 let wrongLetters = [];
 remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
 
-console.log(wordToGuess);
-
 function playingGame (event) {
     let key = event.key;
     if (key >= "a" && key <= "z") {
