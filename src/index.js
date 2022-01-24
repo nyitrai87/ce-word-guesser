@@ -44,7 +44,7 @@ input.addEventListener("keyup", function (event) {
             remainingGuesses--;
             remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
             if (!wordToGuess.includes(input.value)) {
-                wrongLetters.push(input.value);
+                wrongLetters.push(` ${input.value}`);
             }
             for (let i = 0; i < wordToGuess.length; i++) {
                 if (wordToGuess[i] === input.value) {
@@ -63,8 +63,7 @@ input.addEventListener("keyup", function (event) {
                 input.disabled = true;
             }
             input.value = "";
-            wrongLettersDiv.textContent = `Wrong letters: ${wrongLetters}`;
-            wrongLettersDiv.style.color = "white";
+            wrongLettersDiv.textContent = `Wrong letters:${wrongLetters}`;
         }
     }
 });
