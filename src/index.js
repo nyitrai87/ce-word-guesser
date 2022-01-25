@@ -41,6 +41,14 @@ function playingGame (event) {
     let key = event.key;
     if (key >= "a" && key <= "z") {
         remainingGuesses--;
+        if(word.textContent.includes(key) || wrongLetters.includes(` ${key}`)) {
+            remainingGuesses++;
+            alert("You already guessed this letter!");
+            let index = wrongLetters.indexOf(` ${key}`);
+            if(index > -1) {
+                wrongLetters.splice(index, 1);
+            }
+        }
         remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
         if (!wordToGuess.includes(key)) {
             wrongLetters.push(` ${key}`);
