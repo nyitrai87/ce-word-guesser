@@ -44,12 +44,15 @@ function playingGame (event) {
             alert("You already guessed this letter!");
             return;
         }
+
         remainingGuesses--;
         remaining.textContent = `Remaining guesses: ${remainingGuesses}`;
+
         if (!wordToGuess.includes(key)) {
             wrongLetters.push(` ${key}`);
             wrongLettersDiv.textContent = `Wrong letters:${wrongLetters.filter((v,i) => wrongLetters.indexOf(v) === i)}`;
         }
+
         for (let i = 0; i < wordToGuess.length; i++) {
             if (wordToGuess[i] === key) {
                 let splittedWord = word.textContent.split("");
@@ -61,6 +64,7 @@ function playingGame (event) {
                 }
             }
         }
+        
         if (remainingGuesses === 0 && word.textContent !== wordToGuess) {
             word.textContent = wordToGuess;
             word.style.color = "red";
