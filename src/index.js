@@ -32,6 +32,16 @@ function random(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
+function restartGame() {
+    let restartButton = document.createElement("button");
+    restartButton.id = "restart-button";
+    restartButton.textContent = "Restart game";
+    restartButton.addEventListener("click", function(event) {
+        window.location.reload();
+    })
+    body.append(restartButton);
+}
+
 let remainingGuesses = 6;
 let wordToGuess = random(words);
 let wrongLetters = [];
@@ -61,6 +71,7 @@ function playingGame (event) {
                 if (word.textContent === wordToGuess) {
                     word.style.color = "green";
                     window.removeEventListener("keyup", playingGame);
+                    restartGame();
                 }
             }
         }
@@ -69,6 +80,7 @@ function playingGame (event) {
             word.textContent = wordToGuess;
             word.style.color = "red";
             window.removeEventListener("keyup", playingGame);
+            restartGame();
         }
     }
 }

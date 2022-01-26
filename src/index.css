@@ -23,6 +23,10 @@
     padding-top: 16px;
 }
 
+#restart-button {
+    margin-top: 16px;
+}
+
 html {
     background-color: #212121;
 }
